@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.revature</groupId>
 	<artifactId>Squawk</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
 	<name>Squawk</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
