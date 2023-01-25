@@ -1,0 +1,29 @@
+
+<div id="navbar" *ngIf="!isLoginPage()" class="position-sticky">
+    <div id="iconDiv" routerLink="/home"><img id="squawkIcon" src="assets/iconSquawk.png" alt="icon"><b>Squawk</b></div>
+    <div>
+        <table>
+            <tr>
+                <th><label>Search For User: </label></th>
+                <th><input #searchbar id="searchbar" type="search" (search)="searchForUsers(searchbar.value)"></th>
+                <th><button class="btn btn-sm btn-light" id="searchButton" (click)="searchForUsers(searchbar.value)">Search</button></th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div id="searchResults" *ngIf="users.length > 0 || noResults">
+                        <div *ngFor="let user of users">
+                            <!--These will link to the person's profile eventually-->
+                            <div class="searchResult" [routerLink]="['user', user.userId]" (click)="resetSearch()"><div>{{user.username}}</div><div style="color:gray">Posts: {{user.posts?.length}}</div></div>
+                        </div>
+                        <div *ngIf="noResults" id="noSearchResults">No Users Found</div>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="linkDiv">
+        <app-logout></app-logout>
+    </div>
+</div>

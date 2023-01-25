@@ -1,0 +1,49 @@
+<div class="card-body border-start border-danger" *ngFor="let comment of comments">
+    <table class="table table-borderless">
+        <tbody>
+            <tr>
+                <th class="text-start">
+                    {{ comment.username }}
+                </th>
+                <td class="text-end">
+                    {{ comment.postedDate | date:'MMM d, y h:mm a' }}
+                    <button class="btn btn-sm btn-danger mx-1" type="submit" *ngIf="canDeleteComment(comment);"
+                        (click)="deleteComment(comment);">X</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="padding-left: 20px;">
+        {{ comment.message }}
+    </p>
+
+    <div style="padding-left: 50px;">
+        <div class="mb-3 border rounded" style="padding: 8px;">
+            <input type="text" class="form-control" #replyText placeholder="Reply goes here...">
+            <button class="btn btn-sm btn-dark my-2" type="submit"
+                (click)="createReply(post, comment, replyText.value); replyText.value = '';">Squawk</button>
+        </div>
+        <div *ngIf="comment.replies">
+            <div class="card-body border-start border-primary" *ngFor="let reply of comment.replies">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="text-start">
+                                {{ reply.username }}
+                            </th>
+                            <td class="text-end">
+                                {{ reply.postedDate | date:'MMM d, y h:mm a' }}
+                                <button class="btn btn-sm btn-danger mx-2" type="submit" *ngIf="canDeleteReply(reply);"
+                                    (click)="deleteReply(comment, reply);">X</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="padding: 20px;">
+                    {{ reply.message }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

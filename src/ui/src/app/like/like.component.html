@@ -1,0 +1,7 @@
+<span *ngIf="hasLiked == false; else elseBlock">
+        <button id="like" class="btn btn-sm btn-primary mx-1" type="submit"
+                (click)="handleButtonClick([postItem.postId])">Like</button>
+        {{likeCount}} Likes</span>
+<span><ng-template #elseBlock><button id="like" class="btn btn-sm btn-danger mx-1" type="submit"
+                        (click)="handleButtonClick([postItem.postId])">Unlike</button>
+                {{likeCount}} Likes</ng-template></span>

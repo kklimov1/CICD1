@@ -1,0 +1,60 @@
+/* .feedContainer {
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(0, 140, 255);
+}
+
+#feed {
+    max-width: 920px;
+    width: 90%;
+    margin:auto;
+    margin-bottom: 10px;
+}
+
+#newPost{
+    background-color: azure;
+    padding: 5px;
+}
+
+#newPostText{
+    font-size: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100px;
+    resize: none;
+}
+
+#imagePreviewDiv{
+    margin: 10px 0px;
+    display: inline-block;
+    padding: 5px;
+    border-width: 2px;
+    border-color:rgb(0,70,255);
+    border-style: solid;
+}
+
+#imagePreview{
+    max-width: 200px;
+    max-height: 100px;
+}
+
+#imagePreviewDelete{
+    color:rgb(0,70,255);
+    font-size:20px;
+    font-weight: bold;
+    background-color: transparent;
+    border:none;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.postCreationButton{
+    background-color:deepskyblue;
+    border-width: 1px;
+    border-color:gray;
+    border-radius: 10px;
+    font-weight: bold;
+    padding:5px;
+} */

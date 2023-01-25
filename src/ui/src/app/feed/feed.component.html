@@ -1,0 +1,36 @@
+<!-- <div class="feedContainer">
+  <div id="feed" *ngIf="showNewPostArea">
+      <div id="newPost">
+          <textarea id="newPostText" #postText placeholder="Create a new post!"></textarea>
+          <br>
+          <button class="postCreationButton" (click)="addImageLink()">Add Image</button>
+          <button class="postCreationButton" style="float:right" (click)="createPost(postText.value)">Squawk</button>
+          <div *ngIf="imageLink!=''">
+              <div id="imagePreviewDiv">
+                  <img id="imagePreview" [src]="imageLink">
+              </div>
+              <button id="imagePreviewDelete" (click)="removeImageLink()">X</button>
+          </div>
+      </div>
+  </div>
+  <div *ngFor="let post of posts.slice().reverse()" class="postContainer">
+    <app-post [post]="post" [removePostFromFeed]="removePostFromFeed"></app-post>
+  </div>
+</div> -->
+
+<div *ngIf="showNewPostArea">
+  <div class="mb-3 border rounded" style="padding: 10px;" *ngIf="isFeedPage || (isUserPage && currentUser?.userId == params['id'])">
+    <textarea class="form-control" rows="5" style="resize: none;" #postText placeholder="Post goes here..."></textarea>
+    <button class="btn btn-sm btn-dark my-2" (click)="createPost(postText.value);">Squawk</button>
+    <button class="btn btn-sm btn-dark mx-1" (click)="addImageLink()">Add Image</button>
+    <div *ngIf="imageLink!=''" class="my-1" style="text-align: center;">
+      <img [src]="imageLink" height="50%" width="50%" class="border" style="padding: 10px;">
+      <br>
+      <button class="btn btn-sm btn-dark my-2" (click)="removeImageLink()">Remove Image</button>
+    </div>
+  </div>
+
+  <div *ngFor="let post of posts.slice().reverse()" class="postContainer">
+    <app-post [post]="post" [removePostFromFeed]="removePostFromFeed"></app-post>
+  </div>
+</div>

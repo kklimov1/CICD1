@@ -1,0 +1,118 @@
+<!-- <html>
+    
+    <div *ngIf="!editUser" class="row container-fluid" id="show/hide">
+
+        <body>
+
+            <h2> User Profile </h2>
+
+            <img src={{profilePic}} alt="profile picture" width="100" height="100">
+            <div *ngIf="currentUser">
+            <p>Username: {{currentUser.username}}</p>
+            <p>Firstname: {{currentUser.firstName}}</p>
+            <p>Lastname: {{currentUser.lastName}}</p>
+            <p>Bio: <br>{{currentUser.bio}}</p>
+            </div>
+            <div *ngIf ="activeUser" class="center-button">
+                <button type="button" class="edit-button" (click)="editMode()"> Edit </button>
+            </div>
+
+        </body>
+    
+    </div>
+    <div *ngIf="editUser" class="row container-fluid" id="show/hide">
+
+        <body>
+
+            <h2> User Profile </h2>
+            <div class="profile-edit">
+            <img src={{profilePic}} alt="profile picture" width="100" height="100">
+
+            </div>
+
+            <div *ngIf="currentUser">
+            <p>Username: <input id ="username" #username type = "text" value={{currentUser.username}}></p>
+            <p>Firstname: <input id = "firstName" #firstName type = "text" value={{currentUser.firstName}}></p>
+            <p>Lastname: <input id = "lastName" #lastName type = "text" value={{currentUser.lastName}}></p>
+            <button class="picButton" (click)="editPic()">Edit Image</button>
+            <p>Bio: <br><textarea id = "bio" #bio value = {{currentUser.bio}}></textarea></p>
+            
+            <div class="center-button">
+                    
+                <button style="margin-right: 5px;" (click)="save(username.value, firstName.value, lastName.value, bio.value, imageLink)"> Save </button>
+                <button (click)="cancel()"> Cancel </button>
+                        
+            </div>
+        </div>
+        </body>
+
+    </div>
+</html>
+<app-logout></app-logout> -->
+
+<div class="p-4 mb-3 bg-light border">
+    <div *ngIf="!editUser">
+        <h4 class="text-center">User Profile</h4>
+        <hr>
+        <table class="table table-borderless">
+            <tbody>
+                <tr *ngIf="currentUser">
+                    <td class="text-center">
+                        <img src="{{ profilePic }}" alt="profile picture" width="100" height="100"
+                            class="border" style="padding: 5px;">
+                    </td>
+                </tr>
+                <tr *ngIf="currentUser">
+                    <td>Username: {{ currentUser.username }}</td>
+                </tr>
+                <tr *ngIf="currentUser">
+                    <td>First Name: {{ currentUser.firstName }}</td>
+                </tr>
+                <tr *ngIf="currentUser"> 
+                    <td>Last Name: {{ currentUser.lastName }}</td>
+                </tr>
+                <tr *ngIf="currentUser">
+                    <td>Bio: {{ currentUser.bio }}</td>
+                </tr>
+                <tr *ngIf="activeUser">
+                    <td>
+                        <button type="button" class="edit-button btn btn-sm btn-dark" (click)="editMode()"> Edit </button>
+                    </td>
+                </tr>
+        </table>
+    </div>
+
+    <div *ngIf="editUser">
+        <h4 class="text-center">User Profile</h4>
+        <hr>
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        <img src="{{ profilePic }}" alt="profile picture" width="100" height="100"
+                            class="border" style="padding: 5px;"><br>
+                        <button type="button" class="edit-button btn btn-sm btn-dark" (click)="editPic();">Edit Image</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Username: <input id ="username" #username type = "text" class="form-control" value={{currentUser.username}}></td>
+                </tr>
+                <tr>
+                    <td>First Name: <input id = "firstName" #firstName type = "text" class="form-control" value={{currentUser.firstName}}></td>
+                </tr>
+                <tr>
+                    <td>Last Name: <input id = "lastName" #lastName type = "text" class="form-control" value={{currentUser.lastName}}></td>
+                </tr>
+                <tr>
+                    <td>Bio: <br><textarea id = "bio" class="form-control" rows="3" style="resize: none;" #bio value = {{currentUser.bio}}></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="edit-button btn btn-sm btn-dark" (click)="save(username.value, firstName.value, lastName.value, bio.value, imageLink)">Save</button>
+                        <button class="btn btn-sm btn-dark mx-1" (click)="cancel()">Cancel</button>
+                    </td>
+                </tr>
+        </table>
+    </div>
+</div>
+<!-- </html> -->

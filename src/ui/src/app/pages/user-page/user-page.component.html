@@ -1,0 +1,21 @@
+<!-- 
+<div style="display: flex; flex-grow: grow; align-self: center;">
+    <app-feed style="width: 60%"></app-feed>
+    <app-user-profile id="profile" [userId]="userId" [activeUser]="active" ></app-user-profile>
+</div> -->
+
+<div class="container justify-content-center d-flex ">
+    <div class="col-md-8 py-4">
+        <div class="py-1">
+            <app-feed></app-feed>
+        </div>
+    </div>
+
+    <div class="p-1"></div>
+
+    <div class="col-md-3">
+        <div class="position-sticky" style="top: 5rem;">
+            <app-user-profile id="profile" [userId]="userId" [activeUser]="active"></app-user-profile>
+        </div>
+    </div>
+</div>

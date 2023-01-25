@@ -1,0 +1,200 @@
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td class="col-md-7">
+                <article class="blog-post">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <th class="text-start">
+                          <!-- <img src="assets/profilepic.jpg" alt="profile picture" width="30" height="30"
+                            class="border mx-1" style="padding: 5px;"> -->
+                          {{ post.username }}
+                        </th>
+                        <td class="text-end">
+                          {{post.datePosted | date:'MMM d, y h:mm a'}}
+                          <button class="btn btn-sm btn-danger mx-2" type="submit" *ngIf="canDelete"
+                            (click)="deletePost(post)">X</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p style="padding-bottom: 20px; padding-left: 60px;">
+                    {{ post.message }}
+                  </p>
+
+                  <div class="my-1" style="padding-bottom: 20px; padding-left: 60px; text-align: center;"
+                    *ngIf="post.imageLink != ''">
+                    <img class="postImage" [src]="post.imageLink" height="50%" width="50%" class="border"
+                      style="padding: 10px;">
+                  </div>
+
+                  <div style="padding-bottom: 20px; padding-left: 60px; text-align: center;">
+                    <iframe *ngIf="embedYoutube" width="560" height="315" [src]=safeYoutubeLink
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen></iframe>
+                  </div>
+
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td class="text-start">
+                          <span class="mx-3"><app-like [postItem]="post"></app-like> &#x2022; {{ post.comments.length }}
+                            Comments</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <table class="table">
+                    <thead>
+                      <th>Comments</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table class="table table-borderless">
+                            <tbody>
+                              <tr>
+                                <div class="mb-3 border rounded">
+                                  <input type="text" class="form-control" #commentText
+                                    placeholder="Comment goes here...">
+                                  <button class="btn btn-sm btn-dark my-2" type="submit"
+                                    (click)="createComment(post, commentText.value); commentText.value = '';">Squawk</button>
+                                </div>
+                              </tr>
+
+                              <tr *ngIf="post.comments">
+                                <div class="my-2" style="margin-bottom: 10px;"
+                                  *ngIf="post.comments.length > 0 && !post.clicked">
+                                  <div *ngIf="post.comments.length > 0 && !post.clicked"
+                                    class="card-body border-start border-danger">
+                                    <table class="table table-borderless">
+                                      <tbody>
+                                        <tr>
+                                          <th class="text-start">
+                                            <!-- <img src="assets/profilepic.jpg" alt="profile picture" width="30"
+                                              height="30" class="border mx-1" style="padding: 5px;"> -->
+                                            {{ post.comments[0].username }}
+                                          </th>
+                                          <td class="text-end">
+                                            {{ post.comments[0].postedDate | date:'MMM d, y h:mm a' }}
+                                            <button class="btn btn-sm btn-danger mx-1" type="submit"
+                                              *ngIf="canDeleteComment(post.comments[0]);"
+                                              (click)="deleteComment(post.comments[0]);">X</button>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <p style="padding-bottom: 20px; padding-left: 60px;">
+                                      {{ post.comments[0].message }}
+                                    </p>
+
+                                    <div style="padding-bottom: 20px; padding-left: 60px;">
+                                      <div class="mb-3 border rounded" style="padding: 8px;">
+                                        <input type="text" class="form-control" #replyText
+                                          placeholder="Reply goes here...">
+                                        <button class="btn btn-sm btn-dark my-2" type="submit"
+                                          (click)="createReply(post, post.comments[0], replyText.value); replyText.value = '';">Squawk</button>
+                                      </div>
+
+                                      <div *ngIf="post.comments[0].replies">
+                                        <div class="card-body border-start border-primary my-3"
+                                          *ngFor="let reply of post.comments[0].replies">
+                                          <table class="table table-borderless">
+                                            <tbody>
+                                              <tr>
+                                                <th class="text-start">
+                                                  <!-- <img src="assets/profilepic.jpg" alt="profile picture" width="30"
+                                                    height="30" class="border mx-1" style="padding: 5px;"> -->
+                                                  {{ reply.username }}
+                                                </th>
+                                                <td class="text-end">
+                                                  {{ reply.postedDate | date:'MMM d, y h:mm a' }}
+                                                  <button class="btn btn-sm btn-danger mx-2" type="submit"
+                                                    *ngIf="canDeleteReply(reply);"
+                                                    (click)="deleteReply(post.comments[0], reply);">X</button>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+
+                                          <p style="padding-bottom: 20px; padding-left: 60px;">
+                                            {{ reply.message }}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </tr>
+                              <tr *ngIf="post.comments.length > 1 && !post.clicked">
+                                <td *ngIf="post.comments.length > 1 && !post.clicked">
+                                  <button class="btn btn-sm btn-dark" type="submit"
+                                    *ngIf="post.comments.length > 1 && !post.clicked"
+                                    (click)="clickMoreComments(post)">Read Comments</button>
+                                </td>
+                              </tr>
+
+                              <tr *ngIf="post.clicked">
+                                <td *ngIf="post.clicked">
+                                  <div *ngIf="post.clicked">
+                                    <app-comment *ngIf="clicked" [post]="post" [comments]="post.comments"></app-comment>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </article>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- <div class="post">
+  <span [style]="{'font-size':'20px'}">{{post.username}}</span>
+  <span> posted:</span>
+  <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.datePosted | date:'MMM d, y h:mm a'}}</span>
+  <button *ngIf="canDelete" (click)="deletePost(post)">X</button>
+  <div class="postContent">{{post.message}}<div *ngIf="post.imageLink != ''"><img class="postImage"
+        [src]="post.imageLink"></div>
+  </div>
+  <iframe *ngIf="embedYoutube" width="560" height="315" [src]=safeYoutubeLink title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe>
+
+  <div><app-like [postItem]="post"></app-like>{{post.comments.length}} comments</div>
+
+  <div id="newPost">
+    <textarea id="newPostText" #postText placeholder="Create a new comment!"></textarea>
+    <br>
+    <button (click)="createComment(post, postText.value); postText.value = '';">Squawk</button>
+  </div>
+
+  <div [style]="{'margin-left': '25px', 'margin-top':'20px'}" *ngIf="post.comments.length > 0 && !post.clicked">
+    <span>{{post.comments[0].username}}</span>
+    <span [style]="{'font-size':'12px'}"> commented:</span>
+    <span [style]="{'font-size':'12px', 'float': 'right'}">{{post.comments[0].postedDate | date:'MM-dd-yyyy hh:mm:ss
+      a'}}</span>
+    <div class="commentContent">{{post.comments[0].message}}</div>
+  </div>
+  <button *ngIf="post.comments.length > 1 && !post.clicked" (click)="clickMoreComments(post)">Read comments</button>
+  <div *ngIf="post.clicked">
+    <app-comment *ngIf="clicked" [post]="post" [comments]="post.comments"></app-comment>
+  </div>
+</div> -->

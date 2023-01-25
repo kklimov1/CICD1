@@ -1,0 +1,48 @@
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+  
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.login {
+  background-color: rgb(206, 206, 206);
+  width: 350px;
+  height: 440px;
+  border-style: double;
+  position: relative;
+
+}
+
+img {
+  margin-left: 35%;
+  margin-top: 25px;
+}
+h2 {
+  width: auto;
+  text-align: center;
+}
+
+.form-group {
+  padding: 4px;
+  width: auto;
+  margin-left: 50px;
+}
+
+.output-name {
+  text-align: center;
+}
+input {
+  margin-left: 8px;
+}
+
+.submit-userpassword {
+  margin: 10px;
+  position: absolute;
+  left: 40%;
+}
+
+.buttons {
+  display: inline;
+}

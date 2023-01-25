@@ -1,0 +1,25 @@
+.register {
+    background-color: rgb(206, 206, 206);
+    width: 420px;
+    height: 440px;
+    border-style: double;
+    position: relative;
+    text-align: right;
+    padding-top: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+input {
+    position: center;
+    margin: 5px;
+    margin-right: 70px;
+}
+
+button {
+    margin: 10px;
+    position: absolute;
+    left: 38%;
+}
