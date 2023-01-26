@@ -14,7 +14,8 @@ export class PostsService {
   // making changes by adding like service in here
   constructor(private http: HttpClient) {}
 
-  baseUrl: string = "http://localhost:8080";
+  //baseUrl: string = "http://localhost:8080";
+  baseUrl: string = "http://ec2-52-91-117-26.compute-1.amazonaws.com:7777";
 
   postsUrl: string = "/posts/feed";
 
